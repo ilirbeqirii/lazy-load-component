@@ -11,6 +11,10 @@ import { FlightDetailsComponent } from './flight-details/flight-details.componen
     @defer {
     <app-flights />
     <app-flight-details />
+    } @loading {
+      <p>Loading...</p>
+    } @error {
+      <p>Erro happened!</p>
     }
   `,
   imports: [FlightsComponent, FlightDetailsComponent],

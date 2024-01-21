@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, Directive, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef, inject } from "@angular/core";
-import { ProductsComponent } from "./products/products.component";
 
 @Directive({
     selector: '[inViewport]',
