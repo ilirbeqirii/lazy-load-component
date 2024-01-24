@@ -1,0 +1,12 @@
+<h2>Achievements</h2>
+
+<div class="achievements-container">
+
+  @for (achievement of achievements; track achievement.title) {
+  <div class="achievement-card">
+    <h3>{{achievement.title}}</h3>
+    <p>{{achievement.description}}</p>
+  </div>
+  }
+
+</div>

@@ -1,0 +1,29 @@
+img {
+  width: 150px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+	align-items: center;
+}
+
+.social-icons {
+  display: flex;
+  gap: 15px;
+	align-self: flex-end;
+}
+
+.icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0b79c3;
+  color: #fff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.icon-link:hover {
+  background-color: #297fb8;
+}

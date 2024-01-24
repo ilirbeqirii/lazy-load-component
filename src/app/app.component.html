@@ -1,7 +1,19 @@
-<h1>Hello from {{ title }}!</h1>
+<app-nav />
 
-<a routerLink="/imperatively">Lazy Load Imperatively</a>&nbsp;
-<a routerLink="/defer">Defer Declaratively</a>&nbsp;
-<a routerLink="/defer-viewport">Defer on viewport</a>
+<div class="wrapper">
+	<app-details id="details" />
+</div>
 
-<router-outlet />
+<div class="wrapper wrapper-xl">
+	<app-projects id="projects" />
+</div>
+
+<div class="wrapper wrapper-xl">
+	<app-achievements id="achievements" />
+</div>
+
+<hr />
+
+<div class="wrapper">
+	<app-contact id="contact" />
+</div>

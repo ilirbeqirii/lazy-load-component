@@ -1,0 +1,25 @@
+.contact-section h2 {
+  color: #333;
+}
+
+.contact-section p {
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.contact-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-item {
+  margin: 10px;
+  text-align: left;
+}
+
+.contact-item i {
+  font-size: 1.5em;
+  margin-right: 10px;
+  color: #333;
+}

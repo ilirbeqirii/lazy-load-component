@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: rgb(13, 17, 23);
+  color: rgb(230, 237, 243);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans",
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  margin: 0 0 20px 0;
+}
+
+.wrapper {
+  max-width: 80ch;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 48px;
+}
+
+.wrapper-xl {
+  max-width: 120ch;
+}
+
+h1 {
+  padding: 0.67em 0;
+  margin: 0;
+}
+
+h2 {
+  color: rgb(247, 129, 102);
+}
