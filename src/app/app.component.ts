@@ -1,23 +1,15 @@
 import { Component } from '@angular/core';
-import { ProjectsComponent } from './projects/projects.component';
-import { AchievementsComponent } from './achievements/achievements.component';
-import { DetailsComponent } from './details/details.component';
-import { ContactComponent } from './contact/contact.component';
-import { NavComponent } from './nav/nav.component';
+import { NavComponent } from './core/nav/nav.component';
+import { RouterOutlet } from '@angular/router';
+import { ContactComponent } from './core/contact/contact.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    ProjectsComponent,
-    AchievementsComponent,
-    DetailsComponent,
-    ContactComponent,
-    NavComponent,
-  ],
+  imports: [NavComponent, ContactComponent , RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'lazy-load-component';
+  title = 'Deferrable Views: The Past and Present';
 }

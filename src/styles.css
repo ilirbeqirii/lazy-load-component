@@ -30,3 +30,7 @@ h1 {
 h2 {
   color: rgb(247, 129, 102);
 }
+
+hr {
+  margin: 4rem 0.5rem;
+}
