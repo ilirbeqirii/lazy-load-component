@@ -15,7 +15,7 @@ function loadDeps() {
   );
 }
 
-type LoadingState = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETE' | 'FAILED';
+type DepsLoadingState = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETE' | 'FAILED';
 
 @Component({
   selector: 'app-non-defer-block',
@@ -27,7 +27,7 @@ type LoadingState = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETE' | 'FAILED';
 export class NonDeferBlockComponent {
   @ViewChild('contentSlot', { read: ViewContainerRef }) contentSlot!: ViewContainerRef;
 
-  lazyState$ = new BehaviorSubject<LoadingState>('NOT_STARTED');
+  depsState$ = new BehaviorSubject<DepsLoadingState>('NOT_STARTED');
 
   async onViewport() {
     // after
@@ -37,12 +37,12 @@ export class NonDeferBlockComponent {
       }, 1000);
     })
 
-    this.lazyState$.next('IN_PROGRESS');
+    this.depsState$.next('IN_PROGRESS');
 
     const [projectsLoadModule, achievementsLoadModule] = await loadDeps();
 
     if (projectsLoadModule.status == "rejected" || achievementsLoadModule.status == "rejected") {
-      this.lazyState$.next('FAILED');
+      this.depsState$.next('FAILED');
       return;
     }
 
@@ -51,7 +51,7 @@ export class NonDeferBlockComponent {
       this.contentSlot.createComponent(projectsLoadModule.value.ProjectsComponent);
       this.contentSlot.createComponent(achievementsLoadModule.value.AchievementsComponent);
 
-      this.lazyState$.next('COMPLETE');
+      this.depsState$.next('COMPLETE');
     }, 3000);
   }
 }

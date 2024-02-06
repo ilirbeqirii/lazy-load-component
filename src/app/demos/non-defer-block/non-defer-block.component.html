@@ -7,7 +7,7 @@
 <div class="wrapper wrapper-xl">
     <ng-template #contentSlot />
 
-    <ng-container *ngIf="lazyState$ | async as state">
+    <ng-container *ngIf="depsState$ | async as state">
         <ng-template *ngIf="state == 'NOT_STARTED'" [ngTemplateOutlet]="placeholderTpl"></ng-template>
         <ng-template *ngIf="state == 'IN_PROGRESS'" [ngTemplateOutlet]="loadingTpl"></ng-template>
         <ng-template *ngIf="state == 'FAILED'" [ngTemplateOutlet]="errorTpl"></ng-template>
