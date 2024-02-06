@@ -9,8 +9,8 @@
 
     <ng-container *ngIf="lazyState$ | async as state">
         <ng-template *ngIf="state == 'NOT_STARTED'" [ngTemplateOutlet]="placeholderTpl"></ng-template>
-        <ng-template *ngIf="state == 'LOADING'" [ngTemplateOutlet]="loadingTpl"></ng-template>
-        <ng-template *ngIf="state == 'ERROR'" [ngTemplateOutlet]="errorTpl"></ng-template>
+        <ng-template *ngIf="state == 'IN_PROGRESS'" [ngTemplateOutlet]="loadingTpl"></ng-template>
+        <ng-template *ngIf="state == 'FAILED'" [ngTemplateOutlet]="errorTpl"></ng-template>
     </ng-container>
 
     <ng-template #placeholderTpl>

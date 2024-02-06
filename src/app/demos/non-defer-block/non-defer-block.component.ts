@@ -1,7 +1,7 @@
 import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { DetailsComponent } from '../../user/details/details.component';
 import { InViewportDirective } from '../in-viewport.directive';
-import { BehaviorSubject, take, tap } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { AsyncPipe, NgIf, NgTemplateOutlet } from '@angular/common';
 import { ProjectsSkeletonComponent } from "../../user/projects-skeleton/projects-skeleton.component";
 
@@ -14,7 +14,7 @@ function loadDeps() {
   );
 }
 
-type LoadingState = 'NOT_STARTED' | 'LOADING' | 'SUCCESS' | 'ERROR';
+type LoadingState = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETE' | 'FAILED';
 
 @Component({
   selector: 'app-non-defer-block',
@@ -29,12 +29,12 @@ export class NonDeferBlockComponent {
   lazyState$ = new BehaviorSubject<LoadingState>('NOT_STARTED');
 
   async onViewport() {
-    this.lazyState$.next('LOADING');
+    this.lazyState$.next('IN_PROGRESS');
 
     const [projectsLoadModule, achievementsLoadModule] = await loadDeps();
 
     if (projectsLoadModule.status == "rejected" || achievementsLoadModule.status == "rejected") {
-      this.lazyState$.next('ERROR');
+      this.lazyState$.next('FAILED');
       return;
     }
 
@@ -42,7 +42,7 @@ export class NonDeferBlockComponent {
       this.contentSlot.createComponent(projectsLoadModule.value.ProjectsComponent);
       this.contentSlot.createComponent(achievementsLoadModule.value.AchievementsComponent);
   
-      this.lazyState$.next('SUCCESS');
+      this.lazyState$.next('COMPLETE');
     }, 5000);
   }
 }
