@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NonDeferBlockComponent } from './non-defer-block.component';
+import { NonDeferBlockComponent } from './user-profile.component';
 
 describe('NonDeferBlockComponent', () => {
   let component: NonDeferBlockComponent;

@@ -7,7 +7,7 @@ export const routes: Routes = [
     },
     {
         path: 'non-defer-block',
-        loadComponent: () => import("./demos/non-defer-block/non-defer-block.component").then(c => c.NonDeferBlockComponent)
+        loadComponent: () => import("./demos/non-defer-block/user-profile.component").then(c => c.UserProfileComponent)
     },
     {
         path: '',

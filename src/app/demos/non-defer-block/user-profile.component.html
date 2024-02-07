@@ -1,0 +1,72 @@
+<div class="wrapper">
+    <app-details id="details" />
+</div>
+
+<!-- For 3 scenarios, when you want to use 'span' element as trigger -->
+<!-- |
+                    |
+                    V -->
+<!-- <span (inViewport)="onViewport()"></span>
+<div class="wrapper" style="margin-top: 0;">
+    <p>
+        Throughout this virtual odyssey, Alex collaborated with cross-functional teams, adapting to the unique demands
+        of each industry. From startups to established corporations, Alex's ability to translate complex requirements
+        into elegant front-end solutions earned accolades, establishing a reputation as a sought-after virtual front-end
+        developer.
+    </p>
+    <p>
+        As the digital landscape continues to evolve, Alex remains at the forefront, embracing new challenges and
+        pushing the boundaries of what's possible in the world of web development. With a portfolio that reads like a
+        novel of innovation, Alex's journey as a virtual front-end developer continues, leaving an indelible mark on the
+        ever-expanding canvas of the digital frontier.
+    </p>
+    <p>
+        Throughout this virtual odyssey, Alex collaborated with cross-functional teams, adapting to the unique demands
+        of each industry. From startups to established corporations, Alex's ability to translate complex requirements
+        into elegant front-end solutions earned accolades, establishing a reputation as a sought-after virtual front-end
+        developer.
+    </p>
+    <p>
+        As the digital landscape continues to evolve, Alex remains at the forefront, embracing new challenges and
+        pushing the boundaries of what's possible in the world of web development. With a portfolio that reads like a
+        novel of innovation, Alex's journey as a virtual front-end developer continues, leaving an indelible mark on the
+        ever-expanding canvas of the digital frontier.
+    </p>
+    <p>In the fast-paced world of web development, Alex Morrison, affectionately known as "Blaze" in the coding circles,
+        stands out as a beacon of innovation and expertise. With a surname reminiscent of the rhythmic hum of code
+        execution and a nickname that captures the fiery passion for pushing boundaries, Alex has become a respected
+        figure in the virtual landscapes. Blaze's journey through diverse industries has been marked by an unwavering
+        commitment to crafting seamless and intuitive user interfaces, leaving an indelible mark on each project
+        undertaken.
+    </p>
+</div> -->
+
+<div class="wrapper wrapper-xl">
+    <ng-template #contentSlot />
+
+    <ng-container *ngIf="depsState$ | async as state">
+        <ng-template *ngIf="state == 'NOT_STARTED'" [ngTemplateOutlet]="placeholderTpl"></ng-template>
+        <ng-template *ngIf="state == 'IN_PROGRESS'" [ngTemplateOutlet]="loadingTpl"></ng-template>
+        <ng-template *ngIf="state == 'FAILED'" [ngTemplateOutlet]="errorTpl"></ng-template>
+    </ng-container>
+
+    <ng-template #placeholderTpl>
+        <!-- Remove '(inViewport)="onViewport()"' from 'p' below 
+            if the 'span' above is used as trigger element -->
+        <p (inViewport)="onViewport()" style="text-align: center;">
+            Projects and Achievements will be rendered here...
+        </p>
+    </ng-template>
+
+    <ng-template #loadingTpl>
+        <h2>Projects</h2>
+        <app-projects-skeleton />
+
+        <h2>Achievements</h2>
+        <app-achievements-skeleton />
+    </ng-template>
+
+    <ng-template #errorTpl>
+        <p>Oops, something went wrong!</p>
+    </ng-template>
+</div>
