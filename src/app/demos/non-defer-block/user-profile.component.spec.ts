@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NonDeferBlockComponent } from './user-profile.component';
+import { UserProfileComponent } from './user-profile.component';
 
-describe('NonDeferBlockComponent', () => {
-  let component: NonDeferBlockComponent;
-  let fixture: ComponentFixture<NonDeferBlockComponent>;
+describe('UserProfileComponent', () => {
+  let component: UserProfileComponent;
+  let fixture: ComponentFixture<UserProfileComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NonDeferBlockComponent]
+      imports: [UserProfileComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(NonDeferBlockComponent);
+    fixture = TestBed.createComponent(UserProfileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
