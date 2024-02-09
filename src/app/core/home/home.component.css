@@ -1,0 +1,13 @@
+ol {
+    width: 250px;
+    margin: 0 auto;
+    display: block;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+a {
+    color: lightgreen;
+}

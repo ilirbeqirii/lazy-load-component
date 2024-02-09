@@ -1,9 +1,14 @@
 import { Routes } from '@angular/router';
+import { HomeComponent } from './core/home/home.component';
 
 export const routes: Routes = [
     {
+        path: 'home',
+        component: HomeComponent
+    },
+    {
         path: 'defer-block',
-        loadComponent: () => import("./demos/defer-block/defer-block.component").then(c => c.DeferBlockComponent)
+        loadComponent: () => import("./demos/defer-block/user-profile.component").then(c => c.UserProfileComponent)
     },
     {
         path: 'non-defer-block',
@@ -11,7 +16,7 @@ export const routes: Routes = [
     },
     {
         path: '',
-        redirectTo: 'non-defer-block',
+        redirectTo: 'home',
         pathMatch: 'full'
     }
 ];

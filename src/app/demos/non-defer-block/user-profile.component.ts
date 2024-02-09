@@ -5,6 +5,8 @@ import { BehaviorSubject } from 'rxjs';
 import { AsyncPipe, NgIf, NgTemplateOutlet } from '@angular/common';
 import { ProjectsSkeletonComponent } from "../../user/projects-skeleton/projects-skeleton.component";
 import { AchievementsSkeletonComponent } from "../../user/achievements-skeleton/achievements-skeleton.component";
+import { NavComponent } from '../../core/nav/nav.component';
+import { ContactComponent } from '../../core/contact/contact.component';
 
 function loadDeps() {
   return Promise.allSettled(
@@ -30,7 +32,7 @@ type DepsLoadingState = 'NOT_STARTED' | 'IN_PROGRESS' | 'COMPLETE' | 'FAILED';
   standalone: true,
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css',
-  imports: [DetailsComponent, NgIf, AsyncPipe, NgTemplateOutlet, InViewportDirective, ProjectsSkeletonComponent, AchievementsSkeletonComponent]
+  imports: [DetailsComponent, NavComponent, ContactComponent, NgIf, AsyncPipe, NgTemplateOutlet, InViewportDirective, ProjectsSkeletonComponent, AchievementsSkeletonComponent]
 })
 export class UserProfileComponent {
   @ViewChild('contentSlot', { read: ViewContainerRef }) contentSlot!: ViewContainerRef;

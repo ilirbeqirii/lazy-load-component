@@ -1,14 +1,11 @@
 <app-nav />
 
 <div class="wrapper">
-    <app-details id="details" />
+	<app-details id="details" />
 </div>
 
-<!-- For 3 scenarios, when you want to use 'span' element as trigger -->
-<!-- |
-                    |
-                    V -->
-<!-- <span (inViewport)="onViewport()"></span>
+<!-- Sample #2: Using trigger element other than placeholder -->
+<!-- <span #triggerEl></span>
 <div class="wrapper" style="margin-top: 0;">
     <p>
         Throughout this virtual odyssey, Alex collaborated with cross-functional teams, adapting to the unique demands
@@ -43,41 +40,74 @@
     </p>
 </div> -->
 
+<!-- Sample #1: Using placeholder as trigger element -->
 <div class="wrapper wrapper-xl">
-    <ng-template #contentSlot />
-
-    <ng-container *ngIf="depsState$ | async as state">
-        <ng-template *ngIf="state == 'NOT_STARTED'" [ngTemplateOutlet]="placeholderTpl"></ng-template>
-        <ng-template *ngIf="state == 'IN_PROGRESS'" [ngTemplateOutlet]="loadingTpl"></ng-template>
-        <ng-template *ngIf="state == 'FAILED'" [ngTemplateOutlet]="errorTpl"></ng-template>
-    </ng-container>
-
-    <ng-template #placeholderTpl>
-        <!-- Remove '(inViewport)="onViewport()"' from 'p' below 
-            if the 'span' above is used as trigger element -->
-        <p (inViewport)="onViewport()" style="text-align: center;">
-            Projects will be rendered here...
-
-            <!-- For Scenario 3 uncomment line below -->
-            <!-- Projects and Achievements will be rendered here... -->
-        </p>
-    </ng-template>
-
-    <ng-template #loadingTpl>
+	@defer (on viewport) {
+		<app-projects  />
+	} @placeholder () {
+		<p style="text-align: center;">Projects will be rendered here...</p>
+	} @loading (after 1s; minimum 3s) {
         <app-projects-skeleton />
-        
-         <!-- For Scenario 3 uncomment line below -->
-        <!-- <h2>Projects</h2>
+	} @error {
+		<p>Oops, something went wrong!</p>
+	}
+</div>
+
+<!-- Sample #2: Using trigger element other than placeholder -->
+<!-- <div class="wrapper wrapper-xl">
+	@defer (on viewport(triggerEl)) {
+		<app-projects  />
+	} @placeholder () {
+		<p style="text-align: center;">Projects will be rendered here...</p>
+	} @loading (after 1s; minimum 3s) {
+        <app-projects-skeleton />
+	} @error {
+		<p>Oops, something went wrong!</p>
+	}
+</div> -->
+
+<!-- Sample #3: Loading more than one component together -->
+<!-- <div class="wrapper wrapper-xl">
+	@defer (on viewport) {
+		<app-projects  />
+		<app-achievements />
+	} @placeholder () {
+		<p style="text-align: center;">Projects and Achievements will be rendered here...</p>
+	} @loading (after 1s; minimum 3s) {
+		<h2>Projects</h2>
         <app-projects-skeleton />
 
         <h2>Achievements</h2>
-        <app-achievements-skeleton /> -->
-    </ng-template>
+        <app-achievements-skeleton />
+	} @error {
+		<p>Oops, something went wrong!</p>
+	}
+</div> -->
 
-    <ng-template #errorTpl>
-        <p>Oops, something went wrong!</p>
-    </ng-template>
-</div>
+<!-- Sample #4: Loading more than one component separately -->
+<!-- <div class="wrapper wrapper-xl">
+	@defer (on viewport) {
+		<app-projects  />
+	} @placeholder () {
+		<p style="text-align: center;">Projects will be rendered here...</p>
+	} @loading (after 1s; minimum 3s) {
+        <h2>Projects</h2>
+        <app-projects-skeleton />
+	} @error {
+		<p>Oops, something went wrong!</p>
+	}
+
+	@defer (on viewport) {
+		<app-achievements />
+	} @placeholder () {
+		<p style="text-align: center;">Achievements will be rendered here...</p>
+	} @loading (after 1s; minimum 3s) {
+        <h2>Achievements</h2>
+        <app-achievements-skeleton />
+	} @error {
+		<p>Oops, something went wrong!</p>
+	}
+</div> -->
 
 <hr />
 
