@@ -41,12 +41,11 @@ export class UserProfileComponent {
 
   // ---- Scenario #1: Lazy Loading with flickering issue
   async onViewport() {
+    this.depsState$.next('IN_PROGRESS');
+    
     const loadingDep = import("../../user/projects/projects.component");
-
     loadingDep.then(
       c => {
-        this.depsState$.next('IN_PROGRESS');
-
         this.contentSlot.createComponent(c.ProjectsComponent);
 
         this.depsState$.next('COMPLETE');
@@ -57,13 +56,12 @@ export class UserProfileComponent {
 
   // ---- Scenario #2: Lazy Loading without flickering issue 
   // async onViewport() {
-  //   const loadingDep = import("../../user/projects/projects.component");
+  //   // time after which rendering the loading template
+  //   delay(1000).then(() => this.depsState$.next('IN_PROGRESS'));
 
+  //   const loadingDep = import("../../user/projects/projects.component");
   //   loadingDep.then(
   //     c => {
-  //       // time after which rendering the loading template
-  //       delay(1000).then(() => this.depsState$.next('IN_PROGRESS'));
-
   //       // minimum time to keep the loading template rendered
   //       delay(3000).then(() => {
   //         this.contentSlot.createComponent(c.ProjectsComponent);
@@ -77,12 +75,11 @@ export class UserProfileComponent {
 
   // ---- Scenario #3. Lazy Loading of multiple dependencies
   // async onViewport() {
-  //   const [projectsLoadModule, achievementsLoadModule] = await loadDeps();
-
   //   await delay(1000);
 
   //   this.depsState$.next('IN_PROGRESS');
 
+  //   const [projectsLoadModule, achievementsLoadModule] = await loadDeps();
   //   if (projectsLoadModule.status == "rejected" || achievementsLoadModule.status == "rejected") {
   //     this.depsState$.next('FAILED');
   //     return;
